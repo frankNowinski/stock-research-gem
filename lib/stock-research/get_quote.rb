@@ -7,11 +7,11 @@ class GetQuote
 
   def call
     tag_translate
-    create_csv
+    create_url
     print_stocks
   end
 
-  def create_csv
+  def create_url
     @url = "http://finance.yahoo.com/d/quotes.csv?s=#{tickers}&f=#{tags.join}"
   end
 
