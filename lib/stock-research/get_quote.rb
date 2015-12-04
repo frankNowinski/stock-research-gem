@@ -1,5 +1,5 @@
 class GetQuote
-  attr_accessor :tickers, :tags, :tag_caption, :csv
+  attr_accessor :tickers, :tags, :tag_caption, :url
 
   def initialize(tickers, tags)
     @tickers, @tags, @tag_caption = tickers, tags, []
@@ -12,7 +12,7 @@ class GetQuote
   end
 
   def create_csv
-    @csv = "http://finance.yahoo.com/d/quotes.csv?s=#{tickers}&f=#{tags.join}"
+    @url = "http://finance.yahoo.com/d/quotes.csv?s=#{tickers}&f=#{tags.join}"
   end
 
   def currency?(value)
@@ -21,8 +21,8 @@ class GetQuote
 
   def print_stocks
     counter = 1
-    open(csv) do |file|
-      CSV.parse(file) do |row|
+    open(url) do |csv|
+      CSV.parse(csv) do |row|
         puts "\n\n"
         puts "#{row[0]}".center(45)
         puts " " + "-" * 42

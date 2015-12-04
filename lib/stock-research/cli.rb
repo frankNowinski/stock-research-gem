@@ -5,7 +5,7 @@ module StockResearch
     START_STOCKS = ["AAPL", "GOOG", "MSFT", "NFLX", "TSLA", "IBM", "AMZN", "EBAY", "SBUX", "FB"]
     
     def initialize 
-      @tags = ["N","A","P","O","T8","M","W","V","J1"]
+      @tags = %w(N A P O T8 M W V J1)
     end
 
     def start
@@ -42,7 +42,7 @@ module StockResearch
       puts " r  | P/E Ratio (Realtime)"
       puts " m6 | Percent Change From 200 Day Moving Average\n\n"
      
-      (@tags <<gets.strip.upcase.scan(/\S+/)).flatten!
+      (@tags << gets.strip.upcase.scan(/\S+/)).flatten!
       exit if @tags.include?("EXIT")
     end
 
